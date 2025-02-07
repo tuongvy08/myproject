@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spreadsheet Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Tìm Nhiều Code</h1>
+        <p class="description">Nhập các mã bạn muốn tìm kiếm.</p>
+        <form id="search-form">
+            <table id="search-table">
+                <tr>
+                    <th>Code</th>
+                    <th><button type="submit">Search</button></th>
+                </tr>
+                {% for _ in range(50) %}
+                <tr>
+                    <td><input type="text" name="code"></td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+        <div id="results-section" class="hidden">
+            <button id="back-button">Quay lại</button>
+            <div id="pagination-controls" style="display: inline-block; margin-left: 20px;">
+                <!-- Các nút phân trang sẽ được tạo động -->
+            </div>
+            <div class="results-container">
+                <table id="results-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Code</th>
+                            <th>CAS</th>
+                            <th>Brand</th>
+                            <th>Size</th>
+                            <th>Unit Price</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Nội dung sẽ được tạo động bởi JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
