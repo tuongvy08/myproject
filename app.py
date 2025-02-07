@@ -10,6 +10,9 @@ CORS(app)
 app.secret_key = 'supersecretkey'  # Đặt secret key cho Flask session
 PASSWORD = 'truong3344'  # Mật khẩu cần nhập để truy cập trang web
 
+# Đường dẫn tuyệt đối tới database trên VPS
+DB_PATH = '/home/deploy/myapps/shared_data/products.db'
+
 # Get the path to the directory containing the Python script
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -50,7 +53,7 @@ def query_products_by_codes(codes):
     query = "SELECT Name, Code, CAS, Brand, Size, Ship, Price, Note FROM products WHERE LOWER(Code) IN ({})"
     placeholders = ', '.join(['?'] * len(codes))
     
-    with sqlite3.connect('products.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
 
         # Lấy danh sách CAS tương ứng với các brand đặc biệt
